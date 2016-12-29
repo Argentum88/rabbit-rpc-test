@@ -53,10 +53,10 @@ class SleepRpcClient {
 
 $callback = function(AMQPMessage $req) {
     $n = intval($req->body);
-    echo " [.] forwarding and doubles sleep($n)\n";
+    echo " [.] forwarding and triples sleep($n)\n";
 
     $sleep_rpc = new SleepRpcClient();
-    $response = $sleep_rpc->call($n*2);
+    $response = $sleep_rpc->call($n*3);
 
     $msg = new AMQPMessage($response, ['correlation_id' => $req->get('correlation_id')]);
 
