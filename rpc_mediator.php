@@ -81,8 +81,4 @@ while(count($channel->callbacks)) {
 $channel->close();
 $connection->close();
 
-/*$sleep_rpc = new SleepRpcClient();
-$response = $sleep_rpc->call(1);
-echo " [.] Got ", $response, "\n";*/
-
 ?>
