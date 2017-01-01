@@ -18,10 +18,8 @@ $callback = function(AMQPMessage $req) {
     sleep($n);
 	$msg = new AMQPMessage("sleep $n second", ['correlation_id' => $req->get('correlation_id')]);
 
-	$req->delivery_info['channel']->basic_publish(
-		$msg, '', $req->get('reply_to'));
-	$req->delivery_info['channel']->basic_ack(
-		$req->delivery_info['delivery_tag']);
+	$req->delivery_info['channel']->basic_publish($msg, '', $req->get('reply_to'));
+	$req->delivery_info['channel']->basic_ack($req->delivery_info['delivery_tag']);
 };
 
 $channel->basic_qos(null, 1, null);

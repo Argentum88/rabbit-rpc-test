@@ -44,6 +44,8 @@ class SleepRpcClient {
 
 		while(!$this->response) {
 
+			/* callback для очередных сообщенрий из input_queue тут не сработает
+			т.к. ещё не отправлен acknowledgement для предыдущего сообщения */
 			$this->channel->wait();
 		}
 
@@ -63,10 +65,8 @@ $callback = function(AMQPMessage $req) use ($conn, $channel) {
 
     $msg = new AMQPMessage($response, ['correlation_id' => $req->get('correlation_id')]);
 
-    $req->delivery_info['channel']->basic_publish(
-        $msg, '', $req->get('reply_to'));
-    $req->delivery_info['channel']->basic_ack(
-        $req->delivery_info['delivery_tag']);
+    $req->delivery_info['channel']->basic_publish($msg, '', $req->get('reply_to'));
+    $req->delivery_info['channel']->basic_ack($req->delivery_info['delivery_tag']);
 };
 
 $channel->queue_declare('input_queue', false, false, false, false);
