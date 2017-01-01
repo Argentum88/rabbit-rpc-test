@@ -11,10 +11,10 @@ class SleepRpcClient {
 	private $response;
 	private $corr_id;
 
-	public function __construct()
+	public function __construct($connection, $channel)
 	{
-		$this->connection = new AMQPStreamConnection('rabbit', 5672, 'guest', 'guest');
-		$this->channel = $this->connection->channel();
+		$this->connection = $connection;
+		$this->channel = $channel;
 
 		list($this->callback_queue, ,) = $this->channel->queue_declare("", false, false, true, false);
 		$this->channel->basic_consume($this->callback_queue, '', false, false, false, false, [$this, 'on_response']);
@@ -51,11 +51,14 @@ class SleepRpcClient {
 	}
 };
 
-$callback = function(AMQPMessage $req) {
+$conn = new AMQPStreamConnection('rabbit', 5672, 'guest', 'guest');
+$channel = $conn->channel();
+
+$callback = function(AMQPMessage $req) use ($conn, $channel) {
     $n = intval($req->body);
     echo " [.] forwarding and triples sleep($n)\n";
 
-    $sleep_rpc = new SleepRpcClient();
+    $sleep_rpc = new SleepRpcClient($conn, $channel);
     $response = $sleep_rpc->call($n*3);
 
     $msg = new AMQPMessage($response, ['correlation_id' => $req->get('correlation_id')]);
@@ -66,8 +69,6 @@ $callback = function(AMQPMessage $req) {
         $req->delivery_info['delivery_tag']);
 };
 
-$conn = new AMQPStreamConnection('rabbit', 5672, 'guest', 'guest');
-$channel = $conn->channel();
 $channel->queue_declare('input_queue', false, false, false, false);
 $channel->basic_qos(null, 1, null);
 $channel->basic_consume('input_queue', '', false, false, false, false, $callback);
