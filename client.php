@@ -1,8 +1,11 @@
 <?php
 
+use Postman\Drivers\AMQP;
+use Postman\Gate;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-$postman = new \Postman\Drivers\AMQP('rabbit');
+$gate = new Gate(new AMQP('rabbit'));
 
-$result = $postman->request('echo', '3');
-echo "$result\n";
+$result = $gate->request('test', 'eeecho', ['param' => 'text']);
+var_dump($result);

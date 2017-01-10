@@ -1,10 +1,27 @@
 <?php
 
+use Postman\Drivers\AMQP;
+use Postman\Gate;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-$postman = new \Postman\Drivers\AMQP('rabbit');
+class Test implements Postman\Interfaces\ServiceInterface
+{
+    private $name = 'test';
 
-$postman->subscribe('echo', function ($msq) {
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-    return $msq;
-});
+    public function eeecho($args)
+    {
+        return $args;
+    }
+}
+
+$gate = new Gate(new AMQP('rabbit'), new Test());
+$gate->wait();
