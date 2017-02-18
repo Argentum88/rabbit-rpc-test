@@ -1,27 +1,23 @@
 <?php
 
-use Postman\Drivers\AMQP;
-use Postman\Gate;
+use Ueef\Postbox\Drivers\AMQP;
+use Ueef\Postbox\Envelope;
+use Ueef\Postbox\Handlers\AbstractHandler;
+use Ueef\Postbox\Postbox;
+use Ueef\Postbox\Encoders\JSON;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-class Test implements Postman\Interfaces\ServiceInterface
+class Test extends AbstractHandler
 {
-    private $name = 'test';
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function eeecho($args)
     {
         return $args;
     }
 }
 
-$gate = new Gate(new AMQP('rabbit'), new Test());
-$gate->wait();
+$postbox = new Postbox([
+    'driver' => new AMQP(['host' => 'rabbit']),
+    'envelope' => new Envelope(['encoder' => new JSON()])
+]);
+$postbox->wait('test', new Test());

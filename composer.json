@@ -1,12 +1,5 @@
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/ueef/postman.git"
-        }
-    ],
     "require": {
-        "php-amqplib/php-amqplib": "v2.6.1",
-        "ueef/postman": "dev-dev"
+        "ueef/postbox-amqp": "*"
     }
 }
