@@ -45,7 +45,7 @@ class SleepRpcClient {
 		while(!$this->response) {
 
 			/* callback для очередных сообщенрий из input_queue тут не сработает
-			т.к. ещё не отправлен acknowledgement для предыдущего сообщения */
+			т.к. qos = 1 и ещё не отправлен acknowledgement для предыдущего сообщения */
 			$this->channel->wait();
 		}
 
