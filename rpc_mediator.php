@@ -11,6 +11,8 @@ class SleepRpcClient {
 	private $response;
 	private $corr_id;
 
+	private $canSoftTerminate = true;
+
 	public function __construct($connection, $channel)
 	{
 		$this->connection = $connection;
@@ -18,6 +20,17 @@ class SleepRpcClient {
 
 		list($this->callback_queue, ,) = $this->channel->queue_declare("", false, false, true, false);
 		$this->channel->basic_consume($this->callback_queue, '', false, false, false, false, [$this, 'on_response']);
+
+        pcntl_signal(SIGINT, function () {
+
+        	var_dump($this->canSoftTerminate);
+        	echo "\nstart signal handler\n";
+        	if ($this->canSoftTerminate) {
+        		exit;
+			}
+
+            posix_kill(posix_getpid(),SIGINT);
+        });
 	}
 
 	public function on_response(AMQPMessage $rep)
@@ -29,6 +42,8 @@ class SleepRpcClient {
 
 	public function call($n)
 	{
+		$this->canSoftTerminate = false;
+
 		$this->response = null;
 		$this->corr_id = uniqid();
 
@@ -49,6 +64,7 @@ class SleepRpcClient {
 			$this->channel->wait();
 		}
 
+        $this->canSoftTerminate = true;
 		return $this->response;
 	}
 };
@@ -56,12 +72,13 @@ class SleepRpcClient {
 $conn = new AMQPStreamConnection('rabbit', 5672, 'guest', 'guest');
 $channel = $conn->channel();
 
-$callback = function(AMQPMessage $req) use ($conn, $channel) {
+$sleepRpcClient = new SleepRpcClient($conn, $channel);
+
+$callback = function(AMQPMessage $req) use ($sleepRpcClient) {
     $n = intval($req->body);
     echo " [.] forwarding and triples sleep($n)\n";
 
-    $sleep_rpc = new SleepRpcClient($conn, $channel);
-    $response = $sleep_rpc->call($n*3);
+    $response = $sleepRpcClient->call($n*3);
 
     $msg = new AMQPMessage($response, ['correlation_id' => $req->get('correlation_id')]);
 
