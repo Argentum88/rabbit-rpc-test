@@ -12,6 +12,7 @@ class SleepRpcClient {
 	private $corr_id;
 
 	private $canSoftTerminate = true;
+	public $mustTerminate = false;
 
 	public function __construct($connection, $channel)
 	{
@@ -23,13 +24,11 @@ class SleepRpcClient {
 
         pcntl_signal(SIGINT, function () {
 
-        	var_dump($this->canSoftTerminate);
-        	echo "\nstart signal handler\n";
         	if ($this->canSoftTerminate) {
         		exit;
 			}
 
-            posix_kill(posix_getpid(),SIGINT);
+            $this->mustTerminate = true;
         });
 	}
 
@@ -84,6 +83,10 @@ $callback = function(AMQPMessage $req) use ($sleepRpcClient) {
 
     $req->delivery_info['channel']->basic_publish($msg, '', $req->get('reply_to'));
     $req->delivery_info['channel']->basic_ack($req->delivery_info['delivery_tag']);
+
+    if ($sleepRpcClient->mustTerminate) {
+    	exit;
+	}
 };
 
 $channel->queue_declare('input_queue', false, false, false, false);
