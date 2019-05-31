@@ -9,9 +9,9 @@ use Ueef\Postbox\Envelope;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $postman = new Postman([
-    'driver' => new AMQP(['host' => 'rabbit']),
+    'driver' => new AMQP(),
     'envelope' => new Envelope(['encoder' => new JSON()])
 ]);
 
-$result = $postman->request(['test', 'eeecho'], ['param' => 'text']);
+$result = $postman->request(['test', 'echo'], ['key' => 'value']);
 var_dump($result);

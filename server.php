@@ -10,14 +10,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 class Test extends AbstractHandler
 {
-    public function eeecho($args)
+    public function echo($args)
     {
         return $args;
     }
 }
 
 $postbox = new Postbox([
-    'driver' => new AMQP(['host' => 'rabbit']),
+    'driver' => new AMQP(),
     'envelope' => new Envelope(['encoder' => new JSON()])
 ]);
 $postbox->wait('test', new Test());

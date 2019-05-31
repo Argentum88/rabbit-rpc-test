@@ -1,5 +1,5 @@
 {
     "require": {
-        "ueef/postbox-amqp": "*"
+        "ueef/postbox-amqp": "0.0.1"
     }
 }

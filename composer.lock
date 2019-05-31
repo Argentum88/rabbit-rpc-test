@@ -1,0 +1,325 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f9d3bcc143ef430f6e2da03fcacc6be8",
+    "packages": [
+        {
+            "name": "jcchavezs/zipkin",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jcchavezs/zipkin-php.git",
+                "reference": "1746ced5c92e38783a6cfd2aee165947414be523"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jcchavezs/zipkin-php/zipball/1746ced5c92e38783a6cfd2aee165947414be523",
+                "reference": "1746ced5c92e38783a6cfd2aee165947414be523",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6||^7.0",
+                "psr/http-message": "~1.0",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/psr7": "^1.4",
+                "jcchavezs/httptest": "~0.2",
+                "phpunit/phpunit": "~5.7.19",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zipkin\\": "./src/Zipkin/"
+                },
+                "files": [
+                    "./src/Zipkin/Propagation/Id.php",
+                    "./src/Zipkin/Timestamp.php",
+                    "./src/Zipkin/Kind.php",
+                    "./src/Zipkin/Tags.php",
+                    "./src/Zipkin/Annotations.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "José Carlos Chávez",
+                    "email": "jcchavezs@gmail.com"
+                }
+            ],
+            "description": "A Zipkin instrumentation for PHP",
+            "keywords": [
+                "openzipkin",
+                "tracing",
+                "zipkin"
+            ],
+            "abandoned": "openzipkin/zipkin",
+            "time": "2018-07-11T16:44:25+00:00"
+        },
+        {
+            "name": "php-amqplib/php-amqplib",
+            "version": "v2.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-amqplib/php-amqplib.git",
+                "reference": "fa2f0d4410a11008cb36b379177291be7ee9e4f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/fa2f0d4410a11008cb36b379177291be7ee9e4f6",
+                "reference": "fa2f0d4410a11008cb36b379177291be7ee9e4f6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "replace": {
+                "videlalvaro/php-amqplib": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "scrutinizer/ocular": "^1.1",
+                "squizlabs/php_codesniffer": "^2.5"
+            },
+            "suggest": {
+                "ext-sockets": "Use AMQPSocketConnection"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpAmqpLib\\": "PhpAmqpLib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Alvaro Videla",
+                    "role": "Original Maintainer"
+                },
+                {
+                    "name": "John Kelly",
+                    "email": "johnmkelly86@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Raúl Araya",
+                    "email": "nubeiro@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Formerly videlalvaro/php-amqplib.  This library is a pure PHP implementation of the AMQP protocol. It's been tested against RabbitMQ.",
+            "homepage": "https://github.com/php-amqplib/php-amqplib/",
+            "keywords": [
+                "message",
+                "queue",
+                "rabbitmq"
+            ],
+            "time": "2016-04-11T14:30:01+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2018-11-20T15:27:04+00:00"
+        },
+        {
+            "name": "ueef/assignable",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ueef/assignable.git",
+                "reference": "1a5de5a2acd7e68ea56e0b269a5a0bfde3025f2e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ueef/assignable/zipball/1a5de5a2acd7e68ea56e0b269a5a0bfde3025f2e",
+                "reference": "1a5de5a2acd7e68ea56e0b269a5a0bfde3025f2e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ueef\\Assignable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2017-07-20T13:58:31+00:00"
+        },
+        {
+            "name": "ueef/postbox",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ueef/postbox.git",
+                "reference": "3626433bb17d67f513765e36b5e8efb5afd3bf03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ueef/postbox/zipball/3626433bb17d67f513765e36b5e8efb5afd3bf03",
+                "reference": "3626433bb17d67f513765e36b5e8efb5afd3bf03",
+                "shasum": ""
+            },
+            "require": {
+                "jcchavezs/zipkin": "1.2.*",
+                "php": ">=7.1",
+                "ueef/assignable": "^0.0.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ueef\\Postbox\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2018-10-12T05:03:33+00:00"
+        },
+        {
+            "name": "ueef/postbox-amqp",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ueef/postbox-amqp.git",
+                "reference": "ab95cc938b4d1345461ce94966fc4071691cb73f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ueef/postbox-amqp/zipball/ab95cc938b4d1345461ce94966fc4071691cb73f",
+                "reference": "ab95cc938b4d1345461ce94966fc4071691cb73f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.1",
+                "php-amqplib/php-amqplib": "2.6.*",
+                "ueef/assignable": "*",
+                "ueef/postbox": "^0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ueef\\Postbox\\Drivers\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2018-10-10T11:16:19+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
