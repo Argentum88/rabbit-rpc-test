@@ -8,11 +8,13 @@ use Ueef\Postbox\Encoders\JSON;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-class Test extends AbstractHandler
+class Worker extends AbstractHandler
 {
-    public function echo($args)
+    public function task($args)
     {
-        return $args;
+        $time = $args['time'];
+        sleep($time);
+        return ['result' => "I am work $time sec"];
     }
 }
 
@@ -20,4 +22,4 @@ $postbox = new Postbox([
     'driver' => new AMQP(),
     'envelope' => new Envelope(['encoder' => new JSON()])
 ]);
-$postbox->wait('test', new Test());
+$postbox->wait('worker', new Worker());

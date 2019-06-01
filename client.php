@@ -13,5 +13,5 @@ $postman = new Postman([
     'envelope' => new Envelope(['encoder' => new JSON()])
 ]);
 
-$result = $postman->request(['test', 'echo'], ['key' => 'value']);
+$result = $postman->request(['worker', 'task'], ['time' => 5]);
 var_dump($result);
